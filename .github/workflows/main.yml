@@ -1,37 +1,44 @@
-name: CI for REST Assured Maven Project
+name: REST Assured API Tests
 
 on:
   push:
     branches:
-      - master  # Change this to match your working branch if different
+      - master
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up JDK 17
+      - name: Debug - Print Current Directory
+        run: pwd
+
+      - name: Debug - List Repository Files
+        run: ls -R
+
+      - name: Find pom.xml Location
+        run: find . -name "pom.xml"
+
+      - name: Set Up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
           cache: 'maven'
 
-      - name: Verify POM.xml exists
-        run: |
-          if [ ! -f pom.xml ]; then
-            echo "Error: pom.xml not found in $(pwd)"
-            exit 1
-          fi
-
-      - name: Build Project with Maven
+      - name: Run Maven Build
         run: mvn clean install -DskipTests
+        working-directory: opencart-api-automation  # Update if needed
 
       - name: Run Tests
         run: mvn test
+        working-directory: opencart-api-automation  # Update if needed
