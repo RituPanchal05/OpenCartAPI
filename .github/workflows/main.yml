@@ -1,47 +1,4 @@
-# name: REST Assured API Tests
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - master
-#   workflow_dispatch:
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v4
-#         with:
-#           fetch-depth: 0
-
-#       - name: Debug - Print Current Directory
-#         run: pwd
-
-#       - name: Debug - List Repository Files
-#         run: ls -R
-
-#       - name: Find pom.xml Location
-#         run: find . -name "pom.xml"
-
-#       - name: Set Up JDK 17
-#         uses: actions/setup-java@v3
-#         with:
-#           distribution: 'temurin'
-#           java-version: '17'
-#           cache: 'maven'
-
-#       - name: Run Maven Build
-#         run: mvn clean install -DskipTests
-#         working-directory: opencart-api-automation  # Update if needed
-
-      # - name: Run Tests
-      #   run: mvn test
-      #   working-directory: opencart-api-automation  # Update if needed
 
 
 name: REST Assured API Tests
