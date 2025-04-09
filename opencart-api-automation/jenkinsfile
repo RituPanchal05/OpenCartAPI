@@ -21,11 +21,7 @@ tools {
             }
         }
 
-        stage('Allure Report') {
-            steps {
-                allure includeProperties: false, jdk: '', results: [[path: "${env.REPORT_DIR}"]]
-            }
-        }
+       
     }
 
     post {
