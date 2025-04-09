@@ -1,10 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven 3.8.1' // Make sure this Maven version is configured in Jenkins global tools
-        jdk 'Java 17'       // Ensure Java 17 is configured too
-    }
+    
 
    
     stages {
