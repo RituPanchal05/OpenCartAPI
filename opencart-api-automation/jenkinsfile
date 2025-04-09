@@ -1,33 +1,33 @@
 pipeline {
     agent any
 
-tools {
-    maven 'Maven 3.9.9'
-    jdk 'Java 17'
-}
+    tools {
+        maven 'Maven 3.8.1'  // Make sure this is installed in Jenkins under Global Tools
+        jdk 'JDK 17'         // Also install this in Jenkins if not already done
+    }
 
-
-   
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/RituPanchal05/OpenCartAPI.git'  // Replace with your repo
+                git url: 'https://github.com/RituPanchal05/OpenCartAPI.git', branch: 'master'
             }
         }
 
         stage('Build & Test') {
             steps {
-                sh 'mvn clean test'
+                // Replace 'OpenCartAPI' with your actual folder name if pom.xml is not in root
+                dir('opencart-api-automation') {
+                    sh 'mvn clean test'
+                }
             }
         }
 
-       
     }
 
     post {
         always {
-            junit 'target/surefire-reports/*.xml'
-            echo 'Build completed!'
+            // JUnit report collection
+            junit 'OpenCartAPI/target/surefire-reports/*.xml'
         }
     }
 }
