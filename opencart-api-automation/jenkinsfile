@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven 3.8.1' // Make sure this Maven version is configured in Jenkins global tools
+        jdk 'Java 17'       // Ensure Java 17 is configured too
+    }
+
+   
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/RituPanchal05/OpenCartAPI.git'  // Replace with your repo
+            }
+        }
+
+        stage('Build & Test') {
+            steps {
+                sh 'mvn clean test'
+            }
+        }
+
+        stage('Allure Report') {
+            steps {
+                allure includeProperties: false, jdk: '', results: [[path: "${env.REPORT_DIR}"]]
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
+            echo 'Build completed!'
+        }
+    }
+}
