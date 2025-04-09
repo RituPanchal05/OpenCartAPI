@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage('Run subproject pipeline') {
+            steps {
+                dir('opencart-api-automation') {
+                    sh 'mvn clean test'
+                }
+            }
+        }
+    }
+}
