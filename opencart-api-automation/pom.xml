@@ -1,15 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
          https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.opencrat.api</groupId>
   <artifactId>opencart-api-automation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <dependencies>
-
-    <!-- REST Assured Core -->
+    <!-- REST Assured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
@@ -17,35 +17,31 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- REST Assured JSON Path -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>json-path</artifactId>
       <version>5.4.0</version>
     </dependency>
 
-    <!-- REST Assured XML Path -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>xml-path</artifactId>
       <version>5.4.0</version>
     </dependency>
 
-    <!-- REST Assured Schema Validator -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>json-schema-validator</artifactId>
-      <version>5.5.1</version>
+      <version>5.4.0</version>
     </dependency>
 
-    <!-- JSON -->
+    <!-- JSON libraries -->
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20250107</version>
     </dependency>
 
-    <!-- GSON -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
@@ -67,20 +63,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Logging -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>2.0.9</version>
-    </dependency>
-
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
-      <scope>test</scope>
-    </dependency>
-
+    <!-- Logging: Use Log4j2 only -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
@@ -121,38 +104,35 @@
       <artifactId>poi-ooxml</artifactId>
       <version>5.2.3</version>
     </dependency>
-
   </dependencies>
 
   <build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.8.1</version> <!-- or latest -->
-      <configuration>
-        <source>17</source>
-        <target>17</target>
-      </configuration>
-    </plugin>
-    
-    
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-surefire-plugin</artifactId>
-      <version>3.0.0-M9</version>
-      <configuration>
-        <suiteXmlFiles>
-          <suiteXmlFile>testng.xml</suiteXmlFile>
-        </suiteXmlFiles>
-        <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-        <reportFormat>brief</reportFormat>
-        <useFile>true</useFile>
-      </configuration>
-    </plugin>
-  </plugins>
-</build>
+    <plugins>
+      <!-- Compiler Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>17</source>
+          <target>17</target>
+        </configuration>
+      </plugin>
 
-
-
+      <!-- Surefire Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M9</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+          <reportFormat>brief</reportFormat>
+          <useFile>true</useFile>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
