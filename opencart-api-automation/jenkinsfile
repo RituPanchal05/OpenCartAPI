@@ -1,7 +1,11 @@
 pipeline {
     agent any
 
-    
+    tools {
+    jdk 'Java 17'   // Name must match the one configured in Jenkins
+    maven 'Maven 3.10.1' // if using Maven too
+}
+
 
    
     stages {
